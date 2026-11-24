@@ -1,0 +1,34 @@
+name: Flutter CI
+
+on:
+  push:
+    branches:
+      - main
+      - feature/**
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Lab A
+        run: |
+          cd LAB_A/bottom_navigator_bar_lab
+          flutter pub get
+          flutter analyze
+
+      - name: Lab B
+        run: |
+          cd LAB_B/data_table_lab
+          flutter pub get
+          flutter analyze
